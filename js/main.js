@@ -1,26 +1,30 @@
-const num1 = parseFloat(prompt('Ingrese el primer número:'));
-const num2 = parseFloat(prompt('Ingrese el segundo número:'));
+function calcular() {
+    const num1 = parseFloat(document.getElementById('num1').value);
+    const num2 = parseFloat(document.getElementById('num2').value);
+    const operacion = document.getElementById('operacion').value;
 
-const operacion = prompt('Seleccione la operación: suma (+), resta (-), multiplicación (*) o división (/)');
+    let resultado;
 
-let resultado;
+    switch (operacion) {
+        case 'sumar':
+            resultado = num1 + num2;
+            break;
+        case 'restar':
+            resultado = num1 - num2;
+            break;
+        case 'multiplicar':
+            resultado = num1 * num2;
+            break;
+        case 'dividir':
+            if (num2 === 0) {
+                resultado = "Error: división por cero";
+            } else {
+                resultado = num1 / num2;
+            }
+            break;
+        default:
+            resultado = 'Operación inválida';
+    }
 
-if (num1 || num2 === " ") {
-    alert("Operacion invalida, debe ingresar dos numeros ")
-}
-
-if (operacion === '+') {
-    resultado = num1 + num2;
-    alert(`El resultado es: ${resultado}`);
-} else if (operacion === '-') {
-    resultado = num1 - num2;
-    alert(`El resultado es: ${resultado}`);
-} else if (operacion === '*') {
-    resultado = num1 * num2;
-    alert(`El resultado es: ${resultado}`);
-} else if (operacion === '/') {
-    resultado = num1 / num2;
-    alert(`El resultado es: ${resultado}`);
-} else {
-    alert('Operación inválida');
+    document.getElementById('resultado').innerText = `El resultado es: ${resultado}`;
 }
